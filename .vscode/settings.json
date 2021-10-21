@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
-    "isrc"
+    "isrc",
+    "logform"
   ],
   "typescript.tsdk": "${workspaceFolder}/node_modules/typescript/lib/",
   "[typescript]": {

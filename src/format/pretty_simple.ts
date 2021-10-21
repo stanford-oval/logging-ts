@@ -4,7 +4,7 @@ import { TransformableInfo } from "logform";
 
 import { LoggerId } from "../logger";
 import { colWidth, DEFAULT_COLORIZE, ColorMap } from "../helpers";
-import Theme, { DEFAULT_THEME } from "./theme";
+import { Theme, DEFAULT_THEME } from "../theme";
 
 // Constants
 // ===========================================================================
@@ -49,7 +49,7 @@ export type TPrettySimpleOptions = {
 // Class
 // ===========================================================================
 
-export class PrettySimple {
+export class PrettySimpleFormat {
     public colorize: boolean;
     public depth: undefined | null | number;
     public omit: Set<string>;
@@ -231,5 +231,5 @@ export class PrettySimple {
 }
 
 export default function prettySimple(opts: TPrettySimpleOptions = {}) {
-    return new PrettySimple(opts);
+    return new PrettySimpleFormat(opts);
 }

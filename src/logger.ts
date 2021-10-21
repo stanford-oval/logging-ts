@@ -3,10 +3,10 @@ import * as Path from "path";
 import * as Winston from "winston";
 import { TransformableInfo } from "logform";
 
-export interface Logger extends Winston.Logger {
+export interface TLogger extends Winston.Logger {
     readonly id: LoggerId;
 
-    childFor(obj: any, defaultMeta?: any): Logger;
+    childFor(obj: any, defaultMeta?: any): TLogger;
 }
 
 export interface Named {
@@ -69,11 +69,11 @@ export class LoggerId {
     }
 }
 
-function extendLogger(
+export function extendLogger(
     id: LoggerId,
     proto: Winston.Logger,
     defaultMeta?: any
-): Logger {
+): TLogger {
     return Object.create(proto, {
         id: {
             value: id,
@@ -111,6 +111,6 @@ function extendLogger(
 export function createLogger(
     id: LoggerId,
     options: Winston.LoggerOptions
-): Logger {
+): TLogger {
     return extendLogger(id, Winston.createLogger(options));
 }
