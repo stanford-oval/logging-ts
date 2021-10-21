@@ -100,3 +100,33 @@ export function findPackageName(startDir: string): string {
     }
     return name;
 }
+
+export function getFromEnv(prefix: string, name: string): undefined | string;
+export function getFromEnv<T>(
+    prefix: string,
+    name: string,
+    cast: (value: string) => T
+): undefined | T;
+export function getFromEnv<T>(
+    prefix: string,
+    name: string,
+    cast?: (value: string) => T
+) {
+    const fullName = `${prefix}_${name.toUpperCase()}`;
+
+    const str = process.env[fullName];
+    if (typeof str === "string") {
+        if (cast === undefined) {
+            return str;
+        }
+        try {
+            return cast(str);
+        } catch (error) {
+            console.warn(`Failed to cast ENV var ${fullName}`, {
+                stringValue: str,
+                castFunction: cast,
+                error,
+            });
+        }
+    }
+}
