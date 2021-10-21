@@ -1,7 +1,7 @@
 import * as Winston from "winston";
 import { findPackageName } from "./helpers";
 
-import { Logger, createLogger, LoggerId } from "./logger";
+import { TLogger, createLogger, LoggerId } from "./logger";
 
 export interface FactoryKwds extends Winston.LoggerOptions {
     runRoot: string;
@@ -47,11 +47,11 @@ export default class Factory {
         };
     }
 
-    public get(filePath: string, options: Winston.LoggerOptions = {}): Logger {
+    public get(filePath: string, options: Winston.LoggerOptions = {}): TLogger {
         const id = LoggerId.from(this.packageName, filePath, this.runRoot);
         const key = String(id);
         if (Winston.loggers.has(key)) {
-            return Winston.loggers.get(key) as Logger;
+            return Winston.loggers.get(key) as TLogger;
         }
         const logger = createLogger(id, this.mergeOptions(options));
 
