@@ -1,6 +1,6 @@
 {
   "name": "@stanford-oval/logging",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shared package for structured logging in TypeScript, based on Winston",
   "author": "Stanford University Open Virtual Assistant Lab",
   "license": "Apache-2.0",
